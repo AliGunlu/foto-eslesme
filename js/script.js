@@ -14,7 +14,26 @@ const kartTemplate = `
     </div>
 `;
 
-const fotoNumaralari = [10, 20, 30, 20, 10, 40, 40, 30];
+function generateRandomPairs() {
+    let numbers = new Set();
+    while (numbers.size < 4) {
+        let random = Math.floor(Math.random() * 99) + 1; // 1 ile 99 arasında rastgele bir sayı üretir
+        numbers.add(random);
+    }
+    // Set'i diziye çevir, her elemandan iki tane kopyala ve karıştır
+    let numArray = Array.from(numbers);
+    let pairedArray = numArray.flatMap(n => [n, n]); // Her numaradan iki tane olacak şekilde yeni bir dizi oluştur
+    return pairedArray.sort(() => 0.5 - Math.random()); // Diziyi karıştır
+}
+
+// Fotoğraf numaralarını rastgele üreten fonksiyonu kullanarak dizi değerini atama
+const fotoNumaralari = generateRandomPairs();
+
+console.log(fotoNumaralari);
+
+
+
+
 
 // HTML'e eklenen kutlama GIF div'i için id
 const celebrationDiv = document.getElementById('celebration');
